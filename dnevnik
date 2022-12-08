@@ -1,0 +1,64 @@
+#!/bin/bash
+
+main() {
+    # Don't change these variables:
+    currentdate=`date +"%Y-%m-%d"`
+    currentday=`date +"%A"`
+    currenttime=`date +"%T"`
+    # Change these variables if you wish to use a different editor and/or viewer:
+    editor="/usr/bin/nano -O"
+    viewer="/usr/bin/okular"
+    # Working directory
+    dir="$HOME/Documents/dnevnik/"
+    # Don't change the following variable.
+    entry="$dir/${currentdate}_dnevnik.md"
+
+    if [[ $1 == "-w" ]]; then
+        # ---- Localisation (optional) ----
+        case $currentday in
+            "Monday") currentday="Ponedeljak";;
+            "Tuesday") currentday="Utorak";;
+            "Wednesday") currentday="Sreda";;
+            "Thursday") currentday="Četvrtak";;
+            "Friday") currentday="Petak";;
+            "Saturday") currentday="Subota";;
+            "Sunday") currentday="Nedelja";;
+        esac
+
+        if [[ -e $entry ]]; then
+            printf '\n' >> ${entry}
+            echo '---' >> ${entry}
+            printf '\n' >> ${entry}
+            echo '##' ${currenttime} >> ${entry}
+            printf '\n' >> ${entry}
+        else
+            printf '\n' >> ${entry}
+            echo '#' ${currentdate} '-' ${currentday}  >> ${entry}
+            printf '\n' >> ${entry}
+            echo '##' ${currenttime} >> ${entry}
+            printf '\n' >> ${entry}
+        fi
+
+        $editor $entry
+
+    elif [[ $1 == "-r" ]]; then
+        $viewer $entry
+    elif [[ $1  == "-b" ]]; then
+        if [[ -e /usr/bin/fzf ]] && [[ -x /usr/bin/fzf ]]; then
+            find $dir | sort -d -r | fzf | xargs -r $viewer
+        else
+            echo "Install fzf for this feature to be usable."
+        fi
+    elif [[ $1 == "-h" ]]; then
+        echo "Flags:"
+        echo "-h help"
+        echo "-w write"
+        echo "-r read"
+        echo "-b browse"
+    else
+       echo "argument invalid"
+       echo "run 'dnevnik -h' for help" 
+    fi
+}
+
+main "$1"
