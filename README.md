@@ -8,3 +8,10 @@ Notable dependencies:
 - okular
 
 Default editor and viewer can be changed in the script, any other alterations are not advisable other than "localisation" code block responsible for translating week days.
+
+How to use:
+
+- dnevnik -h        for help
+- dnevnik -w        for writing
+- dnevnik -r        for reading
+- dnevnik -b        for browsing
