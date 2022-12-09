@@ -47,6 +47,12 @@ main() {
         else
             echo "No entries for today. Run 'dnevnik -w' to write a new entry or browse the existing entries with 'dnevnik -b'."
         fi
+    elif [[ $1 == "-e" ]]; then
+        if [[ -e $entry ]] && [[ -r $entry ]]; then
+            $editor $entry
+        else
+            echo "No entry found for today. Create a new entry with 'dnevnik -w' first, or browse existing ones with 'dnevnik -b'."
+        fi
     elif [[ $1  == "-b" ]]; then
         if [[ -e /usr/bin/fzf ]] && [[ -x /usr/bin/fzf ]]; then
             find $dir | sort -d -r | fzf | xargs -r $viewer
@@ -57,6 +63,7 @@ main() {
         echo "Flags:"
         echo "-h help"
         echo "-w write"
+        echo "-e edit"
         echo "-r read"
         echo "-b browse"
     else
