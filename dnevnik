@@ -42,7 +42,11 @@ main() {
         $editor $entry
 
     elif [[ $1 == "-r" ]]; then
-        $viewer $entry
+        if [[ -e $entry ]] && [[ -r $entry ]]; then
+            $viewer $entry
+        else
+            echo "No entries for today. Run 'dnevnik -w' to write a new entry or browse the existing entries with 'dnevnik -b'."
+        fi
     elif [[ $1  == "-b" ]]; then
         if [[ -e /usr/bin/fzf ]] && [[ -x /usr/bin/fzf ]]; then
             find $dir | sort -d -r | fzf | xargs -r $viewer
