@@ -13,5 +13,6 @@ How to use:
 
 - dnevnik -h        for help
 - dnevnik -w        for writing
+- dnevnik -e        for editing
 - dnevnik -r        for reading
 - dnevnik -b        for browsing
