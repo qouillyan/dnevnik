@@ -7,7 +7,7 @@ Notable dependencies:
 - fzf
 - okular
 
-Default editor and viewer can be changed in the script, any other alterations are not advisable other than "localisation" code block responsible for translating week days.
+Default editor and viewer can be changed in the script, any other alterations are not advisable with one exception: Case..esac block can be removed altogether.
 
 How to use:
 
