@@ -14,17 +14,6 @@ main() {
     entry="$dir/${currentdate}_dnevnik.md"
 
     if [[ $1 == "-w" ]]; then
-        # ---- Localisation (optional) ----
-        case $currentday in
-            "Monday") currentday="Ponedeljak";;
-            "Tuesday") currentday="Utorak";;
-            "Wednesday") currentday="Sreda";;
-            "Thursday") currentday="Četvrtak";;
-            "Friday") currentday="Petak";;
-            "Saturday") currentday="Subota";;
-            "Sunday") currentday="Nedelja";;
-        esac
-
         if [[ -e $entry ]]; then
             printf '\n' >> ${entry}
             echo '---' >> ${entry}
@@ -32,6 +21,17 @@ main() {
             echo '##' ${currenttime} >> ${entry}
             printf '\n' >> ${entry}
         else
+            # ---- Localisation (optional) ----
+            case $currentday in
+                "Monday") currentday="Ponedeljak";;
+                "Tuesday") currentday="Utorak";;
+                "Wednesday") currentday="Sreda";;
+                "Thursday") currentday="Četvrtak";;
+                "Friday") currentday="Petak";;
+                "Saturday") currentday="Subota";;
+                "Sunday") currentday="Nedelja";;
+            esac
+            # The case block above can be removed
             printf '\n' >> ${entry}
             echo '#' ${currentdate} '-' ${currentday}  >> ${entry}
             printf '\n' >> ${entry}
