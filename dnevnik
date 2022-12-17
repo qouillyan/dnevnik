@@ -2,9 +2,9 @@
 
 main() {
     # Don't change these variables:
-    currentdate=`date +"%Y-%m-%d"`
-    currentday=`date +"%A"`
-    currenttime=`date +"%T"`
+    currentdate=$(date +"%Y-%m-%d")
+    currentday=$(date +"%A")
+    currenttime=$(date +"%T")
     # Change these variables if you wish to use a different editor and/or viewer:
     editor="/usr/bin/nano -O"
     viewer="/usr/bin/okular"
